@@ -1,0 +1,67 @@
+---
+title: "TT20230704"
+author: "Noah Lee"
+date: "2023-07-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(sqldf)
+library(sf)
+library(mapview)
+```
+
+
+## Load the data
+```{r}
+historical_markers <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-07-04/historical_markers.csv')
+#no_markers <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-07-04/no_markers.csv')
+```
+
+
+Overview
+```{r}
+glimpse(historical_markers)
+#glimpse(no_markers)
+```
+
+
+Graph a geographical map
+```{r}
+mapview(historical_markers, xcol = "longitude_minus_w", ycol = "latitude_minus_s", crs = 4269, grid = FALSE)
+```
+
+
+Which state has the most monuments
+```{r}
+hm_state <-data.frame(table(historical_markers$state_or_prov))
+colnames(hm_state)[1] = "State"
+colnames(hm_state)[-1] = "Num"
+hm_state[order(hm_state$Num, decreasing = T),]
+```
+
+
+Which city/town has the most monuments
+```{r}
+hm_t <- transform(historical_markers, num = 1)
+ct_most <- sqldf("SELECT city_or_town AS 'City/Town', state_or_prov AS 'State/Prov', sum(Num) AS 'Total num of markers' FROM hm_t
+               GROUP BY city_or_town
+               ORDER BY sum(Num) desc")
+ct_most
+```
+
+
+Which organization erected the most markers
+```{r}
+hm_mm <-data.frame(table(historical_markers$erected_by))
+colnames(hm_mm)[1] = "Erected by"
+colnames(hm_mm)[-1] = "Num"
+hm_mm[order(hm_mm$Num, decreasing = T),]
+```
+
+
+

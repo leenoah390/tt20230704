@@ -1,0 +1,9 @@
+Tidy Tuesday notes for 2023/07/04
+Tidy Tuesday GitHub: https://github.com/rfordatascience/tidytuesday
+
+Direct links
+Data: https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-07-04/readme.md
+Source: https://www.hmdb.org/geolists.asp?c=United%20States%20of%20America
+Article: https://www.hmdb.org/stats.asp
+
+Summary: Dataset is focused on data related to historical markers located across the USA. For practise purposes.
