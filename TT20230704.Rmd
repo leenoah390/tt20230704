@@ -38,8 +38,8 @@ mapview(historical_markers, xcol = "longitude_minus_w", ycol = "latitude_minus_s
 
 * with ggplot and sf
 ```{r}
-#hm_sf <- st_as_sf(historical_markers, coords = c("longitude_minus_w", "latitude_minus_s"))
-#ggplot(hm_sf) + geom_sf()
+hm_sf <- st_as_sf(historical_markers, coords = c("longitude_minus_w", "latitude_minus_s"))
+ggplot(hm_sf) + geom_sf()
 ```
 
 
