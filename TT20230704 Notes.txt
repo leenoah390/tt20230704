@@ -1,9 +1,10 @@
 Loaded libraries to use
- - First time using the mapview library
 
 Loaded dataset as 'historical_markers' and applied glimpse(). 
 
-Using the mapview library from earlier, plotted the location of all the markers onto a map.
+Plot locations on a graph
+- using mapview
+- using sf and ggplot
 
 Ordered the 50 states and Puerto Rico from most to least markers.
 
